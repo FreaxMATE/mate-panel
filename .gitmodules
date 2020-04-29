@@ -1,0 +1,4 @@
+[submodule "mate-panel/libegg"]
+	path = mate-panel/libegg
+	url = https://github.com/mate-desktop/libegg.git
+	ignore = untracked
