@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>rootdir - scan-build results</title>
+<link type="text/css" rel="stylesheet" href="scanview.css"/>
+<script src="sorttable.js"></script>
+<script language='javascript' type="text/javascript">
+function SetDisplay(RowClass, DisplayVal)
+{
+  var Rows = document.getElementsByTagName("tr");
+  for ( var i = 0 ; i < Rows.length; ++i ) {
+    if (Rows[i].className == RowClass) {
+      Rows[i].style.display = DisplayVal;
+    }
+  }
+}
+
+function CopyCheckedStateToCheckButtons(SummaryCheckButton) {
+  var Inputs = document.getElementsByTagName("input");
+  for ( var i = 0 ; i < Inputs.length; ++i ) {
+    if (Inputs[i].type == "checkbox") {
+      if(Inputs[i] != SummaryCheckButton) {
+        Inputs[i].checked = SummaryCheckButton.checked;
+        Inputs[i].onclick();
+      }
+    }
+  }
+}
+
+function returnObjById( id ) {
+    if (document.getElementById)
+        var returnVar = document.getElementById(id);
+    else if (document.all)
+        var returnVar = document.all[id];
+    else if (document.layers)
+        var returnVar = document.layers[id];
+    return returnVar;
+}
+
+var NumUnchecked = 0;
+
+function ToggleDisplay(CheckButton, ClassName) {
+  if (CheckButton.checked) {
+    SetDisplay(ClassName, "");
+    if (--NumUnchecked == 0) {
+      returnObjById("AllBugsCheck").checked = true;
+    }
+  }
+  else {
+    SetDisplay(ClassName, "none");
+    NumUnchecked++;
+    returnObjById("AllBugsCheck").checked = false;
+  }
+}
+</script>
+<!-- SUMMARYENDHEAD -->
+</head>
+<body>
+<h1>rootdir - scan-build results</h1>
+
+<table>
+<tr><th>User:</th><td>root@1f668132c9a5</td></tr>
+<tr><th>Working Directory:</th><td>/rootdir</td></tr>
+<tr><th>Command Line:</th><td>make -j 2</td></tr>
+<tr><th>Clang Version:</th><td>clang version 9.0.1 (Fedora 9.0.1-2.fc31)
+</td></tr>
+<tr><th>Date:</th><td>Wed Apr 29 07:14:26 2020</td></tr>
+</table>
+<h2>Bug Summary</h2><table>
+<thead><tr><td>Bug Type</td><td>Quantity</td><td class="sorttable_nosort">Display?</td></tr></thead>
+<tr style="font-weight:bold"><td class="SUMM_DESC">All Bugs</td><td class="Q">39</td><td><center><input type="checkbox" id="AllBugsCheck" onClick="CopyCheckedStateToCheckButtons(this);" checked/></center></td></tr>
+<tr><th>Dead code</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Unreachable code</td><td class="Q">3</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_code_unreachable_code');" checked/></center></td></tr>
+<tr><th>Dead store</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Dead assignment</td><td class="Q">11</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dead initialization</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_initialization');" checked/></center></td></tr>
+<tr><th>Logic error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Assigned value is garbage or undefined</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_assigned_value_is_garbage_or_undefined');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Cast from non-struct type to struct type</td><td class="Q">18</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_cast_from_non-struct_type_to_struct_type');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dereference of null pointer</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_dereference_of_null_pointer');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Garbage return value</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_garbage_return_value');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Result of operation is garbage or undefined</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_result_of_operation_is_garbage_or_undefined');" checked/></center></td></tr>
+</table>
+<h2>Reports</h2>
+
+<table class="sortable" style="table-layout:automatic">
+<thead><tr>
+  <td>Bug Group</td>
+  <td class="sorttable_sorted">Bug Type<span id="sorttable_sortfwdind">&nbsp;&#x25BE;</span></td>
+  <td>File</td>
+  <td>Function/Method</td>
+  <td class="Q">Line</td>
+  <td class="Q">Path Length</td>
+  <td class="sorttable_nosort"></td>
+  <!-- REPORTBUGCOL -->
+</tr></thead>
+<tbody>
+<tr class="bt_logic_error_assigned_value_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Assigned value is garbage or undefined</td><td>mate-panel/panel-toplevel.c</td><td class="DESC">panel_toplevel_update_size</td><td class="Q">2429</td><td class="Q">7</td><td><a href="report-8087e7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8087e7.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>mate-panel/libegg/eggsmclient-xsmp.c</td><td class="DESC">ptrarray_prop</td><td class="Q">1194</td><td class="Q">1</td><td><a href="report-8ba679.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8ba679.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_set_size_hints</td><td class="Q">303</td><td class="Q">1</td><td><a href="report-b5fd51.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b5fd51.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_get_property</td><td class="Q">1607</td><td class="Q">1</td><td><a href="report-6dc2fe.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6dc2fe.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_set_flags</td><td class="Q">213</td><td class="Q">1</td><td><a href="report-79b715.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-79b715.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>mate-panel/libegg/eggsmclient-xsmp.c</td><td class="DESC">ptrarray_prop</td><td class="Q">1194</td><td class="Q">1</td><td><a href="report-34849b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-34849b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_get_property</td><td class="Q">1607</td><td class="Q">1</td><td><a href="report-78d873.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-78d873.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>mate-panel/libegg/eggsmclient-xsmp.c</td><td class="DESC">array_prop</td><td class="Q">1161</td><td class="Q">1</td><td><a href="report-bfeef4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bfeef4.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_setup</td><td class="Q">1722</td><td class="Q">1</td><td><a href="report-deaf51.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-deaf51.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_set_size_hints</td><td class="Q">303</td><td class="Q">1</td><td><a href="report-705af3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-705af3.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">get_property_cb</td><td class="Q">2140</td><td class="Q">1</td><td><a href="report-dd374b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dd374b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_set_flags</td><td class="Q">213</td><td class="Q">1</td><td><a href="report-82a682.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-82a682.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>mate-panel/panel-multimonitor.c</td><td class="DESC">panel_multimonitor_get_randr_monitors</td><td class="Q">208</td><td class="Q">1</td><td><a href="report-91364e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-91364e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>mate-panel/libegg/eggsmclient-xsmp.c</td><td class="DESC">array_prop</td><td class="Q">1161</td><td class="Q">1</td><td><a href="report-67dbe5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-67dbe5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>mate-panel/panel-context-menu.c</td><td class="DESC">panel_context_menu_create</td><td class="Q">303</td><td class="Q">1</td><td><a href="report-6a7304.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6a7304.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_setup</td><td class="Q">1722</td><td class="Q">1</td><td><a href="report-f56541.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f56541.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">get_property_cb</td><td class="Q">2140</td><td class="Q">1</td><td><a href="report-9ba42c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9ba42c.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_set_size_hints</td><td class="Q">310</td><td class="Q">1</td><td><a href="report-3c31fb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3c31fb.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmate-panel-applet/mate-panel-applet.c</td><td class="DESC">mate_panel_applet_set_size_hints</td><td class="Q">310</td><td class="Q">1</td><td><a href="report-2c5996.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2c5996.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-toplevel.c</td><td class="DESC">panel_toplevel_update_expanded_position</td><td class="Q">2080</td><td class="Q">1</td><td><a href="report-c6c99f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c6c99f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-background.c</td><td class="DESC">panel_background_prepare</td><td class="Q">118</td><td class="Q">1</td><td><a href="report-102c95.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-102c95.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-toplevel.c</td><td class="DESC">panel_toplevel_update_attach_orientation</td><td class="Q">2572</td><td class="Q">1</td><td><a href="report-8eea86.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8eea86.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/libpanel-util/panel-xdg.c</td><td class="DESC">panel_xdg_icon_name_from_icon_path</td><td class="Q">121</td><td class="Q">1</td><td><a href="report-fee4f7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fee4f7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-properties-dialog.c</td><td class="DESC">panel_properties_dialog_present</td><td class="Q">932</td><td class="Q">1</td><td><a href="report-b08784.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b08784.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-background.c</td><td class="DESC">panel_background_prepare</td><td class="Q">119</td><td class="Q">1</td><td><a href="report-77d7c2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-77d7c2.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-toplevel.c</td><td class="DESC">panel_toplevel_update_expanded_position</td><td class="Q">2081</td><td class="Q">1</td><td><a href="report-b5c0de.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b5c0de.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-toplevel.c</td><td class="DESC">panel_toplevel_move_to</td><td class="Q">769</td><td class="Q">1</td><td><a href="report-f61a84.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f61a84.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-toplevel.c</td><td class="DESC">panel_toplevel_move_to</td><td class="Q">770</td><td class="Q">1</td><td><a href="report-c3a89e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c3a89e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/panel-toplevel.c</td><td class="DESC">panel_toplevel_resize_to_pointer</td><td class="Q">591</td><td class="Q">1</td><td><a href="report-3afef1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3afef1.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>mate-panel/libpanel-util/panel-xdg.c</td><td class="DESC">panel_xdg_icon_name_from_icon_path</td><td class="Q">121</td><td class="Q">1</td><td><a href="report-0c43ca.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0c43ca.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>applets/clock/clock-location.c</td><td class="DESC">clock_location_finalize</td><td class="Q">333</td><td class="Q">1</td><td><a href="report-b17e8f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b17e8f.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>mate-panel/libpanel-util/panel-launch.c</td><td class="DESC">_panel_launch_handle_error</td><td class="Q">71</td><td class="Q">41</td><td><a href="report-b9b000.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b9b000.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>mate-panel/libpanel-util/panel-launch.c</td><td class="DESC">_panel_launch_handle_error</td><td class="Q">71</td><td class="Q">41</td><td><a href="report-a57430.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a57430.html" -->
+</tr>
+<tr class="bt_logic_error_garbage_return_value"><td class="DESC">Logic error</td><td class="DESC">Garbage return value</td><td>applets/clock/clock-location.c</td><td class="DESC">clock_location_serialize</td><td class="Q">141</td><td class="Q">8</td><td><a href="report-44a55e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-44a55e.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>mate-panel/libpanel-util/panel-glib.c</td><td class="DESC">panel_g_utf8_strstrcase</td><td class="Q">146</td><td class="Q">15</td><td><a href="report-45483f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-45483f.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>mate-panel/libpanel-util/panel-glib.c</td><td class="DESC">panel_g_utf8_strstrcase</td><td class="Q">146</td><td class="Q">15</td><td><a href="report-b11edd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b11edd.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>mate-panel/libpanel-util/panel-launch.c</td><td class="DESC">panel_launch_desktop_file_with_fallback</td><td class="Q">284</td><td class="Q">1</td><td><a href="report-28fb13.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-28fb13.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>applets/fish/fish.c</td><td class="DESC">handle_keypress</td><td class="Q">1582</td><td class="Q">1</td><td><a href="report-d14433.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d14433.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>mate-panel/libpanel-util/panel-launch.c</td><td class="DESC">panel_launch_desktop_file_with_fallback</td><td class="Q">284</td><td class="Q">1</td><td><a href="report-a21a8f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a21a8f.html" -->
+</tr>
+</tbody>
+</table>
+
+</body></html>
